@@ -1,7 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "../inputstream.h"
 
-int open(char* filename) {
+struct stream_t {
+  FILE *fp;
+};
+
+stream *open(char* filename) {
+  struct stream_t *stream = malloc(sizeof(struct stream_t));
   FILE *fp = fopen(filename, "r");
-  return 10;
+  stream->fp = fp;
+  return stream;
 }
+
