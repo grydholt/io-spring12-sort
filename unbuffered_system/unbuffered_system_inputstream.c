@@ -13,3 +13,18 @@ stream *open(char* filename) {
   return stream;
 }
 
+int next(stream *s) {
+  return getc(s->fp);
+}
+
+int eos(stream *s) {
+  FILE *f = s->fp;
+  int n = getc(f);
+  int r = (n == EOF);
+  if (!r) {
+    ungetc(n, f);
+  }
+  return r;
+}
+
+

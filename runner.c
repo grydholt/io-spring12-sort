@@ -3,7 +3,12 @@
 #include "inputstream.h"
 
 int main() {
-  stream* stream = open("hello");
-  printf("Hello World\n");
-  free(stream);
+  stream* s = open("testdata/inputfile.txt");
+  int value;
+
+  while (!eos(s)) {
+    value = next(s);
+    printf("Hello World: %d\n", value);
+  }
+  free(s);
 }
