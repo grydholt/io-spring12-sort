@@ -1,10 +1,10 @@
 #ifndef INPUTSTREAM_HEADER_SEEN
 #define INPUTSTREAM_HEADER_SEEN
 
-typedef struct stream_t stream;
+typedef struct inputstream_t inputstream;
 
-stream *open(char* filename);
-int next(stream* s);
-int eos(stream* s);
+inputstream *open_input_stream(char* filename);
+int read_next(inputstream* s);
+int end_of_stream(inputstream* s);
 
 #endif /* !INPUTSTREAM_HEADER_SEEN */

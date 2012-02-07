@@ -1,14 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "inputstream.h"
+#include "outputstream.h"
 
 int main() {
-  stream* s = open("testdata/inputfile.txt");
+  outputstream* os = create_output_stream("/tmp/test.bin");
+  write_stream(os, 100);
+  write_stream(os, 1000);
+  close_stream(os);
+
+  inputstream* is = open_input_stream("/tmp/test.bin");
   int value;
 
-  while (!eos(s)) {
-    value = next(s);
+  value = read_next(is);
+  while (!end_of_stream(is)) {
     printf("Hello World: %d\n", value);
+    value = read_next(is);
   }
-  free(s);
+
+  free(is);
+  free(os);
 }
